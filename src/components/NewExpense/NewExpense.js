@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-
 import ExpenseForm from './ExpenseForm';
 import './NewExpense.css';
 
 const NewExpense = (props) => {
+
+  //opens/closes editing window
   const [isEditing, setIsEditing] = useState(false);
 
   const saveExpenseDataHandler = (enteredExpenseData) => {
+
+    //enrich input with unique id
     const expenseData = {
       ...enteredExpenseData,
       id: Math.random().toString(),
