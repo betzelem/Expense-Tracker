@@ -14,14 +14,18 @@ const NewExpense = (props) => {
       ...enteredExpenseData,
       id: Math.random().toString(),
     };
+
+    //add expense and close window
     props.onAddExpense(expenseData);
     setIsEditing(false);
   };
 
+  //opens editing window
   const startEditingHandler = () => {
     setIsEditing(true);
   };
 
+  //closes editing window
   const stopEditingHandler = () => {
     setIsEditing(false);
   };

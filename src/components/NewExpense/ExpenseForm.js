@@ -7,6 +7,9 @@ const ExpenseForm = (props) => {
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
+  //for conditional css for invalid input fields
+  const [isValid, setIsValid] = useState(true);
+
   //event listeners
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
@@ -31,26 +34,30 @@ const ExpenseForm = (props) => {
 
     //check for valid input before submission
     if (expenseData.title.length === 0) {
+      setIsValid(false);
       return;
     }
     if (expenseData.amount.length === 0) {
+      setIsValid(false);
       return;
     }
     if (expenseData.date.toString() === 'Invalid Date') {
+      setIsValid(false);
       return;
     }
-    
+
     //save and reset form
     props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+    setIsValid(true);
   };
 
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
-        <div className="new-expense__control">
+        <div className={`new-expense__control ${!isValid ? 'invalid' : ''}`}>
           <label>Title</label>
           <input
             type="text"
@@ -58,7 +65,7 @@ const ExpenseForm = (props) => {
             onChange={titleChangeHandler}
           />
         </div>
-        <div className="new-expense__control">
+        <div className={`new-expense__control ${!isValid ? 'invalid' : ''}`}>
           <label>Amount</label>
           <input
             type="number"
@@ -68,7 +75,7 @@ const ExpenseForm = (props) => {
             onChange={amountChangeHandler}
           />
         </div>
-        <div className="new-expense__control">
+        <div className={`new-expense__control ${!isValid ? 'invalid' : ''}`}>
           <label>Date</label>
           <input
             type="date"
