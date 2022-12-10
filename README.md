@@ -7,3 +7,8 @@ Version 1.0 completed 12/5/2022
 
 Built using Create React App
 https://create-react-app.dev/
+
+## Update History
+
+Version 1.2 (12/9/22)
+- updated CSS
